@@ -108,28 +108,35 @@ function generateTags(){
 
       /* [DONE] add generated code to html variable */
       html = linkHTML + html;
-      console.log ('html', html);
+
 
     /* [DONE] END LOOP: for each tag */
     }
     /* insert HTML of all the links into the tags wrapper */
     articleTagWrapper.innerHTML = html;
+
   /* [DONE] END LOOP: for every article: */
   }
 }
 
 generateTags();
 
-function tagClickHandler(event){
+function tagClickHandler(event) {
+
   /* prevent default action for this event */
+  event.preventDefault();
 
   /* make new constant named "clickedElement" and give it the value of "this" */
+  const clickedElement = "this";
 
   /* make a new constant "href" and read the attribute "href" of the clicked element */
+  const href = clickedElement;
 
   /* make a new constant "tag" and extract tag from the "href" constant */
+  const tag = href.replace('#tag-', '');
 
   /* find all tag links with class active */
+  const tagActive = document.querySelectorAll('a.active[href^="#tag-"]');
 
   /* START LOOP: for each active tag link */
 
@@ -148,7 +155,8 @@ function tagClickHandler(event){
   /* execute function "generateTitleLinks" with article selector as argument */
 }
 
-function addClickListenersToTags(){
+function addClickListenersToTags() {
+
   /* find all links to tags */
 
   /* START LOOP: for each link */
