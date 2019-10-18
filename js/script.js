@@ -35,8 +35,6 @@ const titleClickHandler = function(event) {
 
     targetArticle.classList.add('active')
 
-    console.log('Added class active to article')
-
 };
 
 const optArticleSelector = '.post',
@@ -49,8 +47,6 @@ function generateTitleLinks() {
 
     const titleList = document.querySelector(optTitleListSelector);
     titleList.innerHTML = '';
-
-    console.log("remove contents of titlelist ", titleList)
 
     /* for each article */
 
