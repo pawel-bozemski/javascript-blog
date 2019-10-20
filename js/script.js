@@ -82,22 +82,20 @@ generateTitleLinks();
 
 function generateTags(){
   /* [DONE] find all articles */
-  const articles = document.querySelectorAll(optArticleTagsSelector);
+  const articles = document.querySelectorAll(optArticleSelector);
 
   /* [DONE] START LOOP: for every article: */
   for (let article of articles) {
 
     /* [DONE] find tags wrapper */
     const articleTagWrapper = article.querySelector(optArticleTagsSelector);
-
     /* [DONE] make html variable with empty string */
     let html = '';
 
     /* [DONE] get tags from data-tags attribute */
     const articleTags = article.getAttribute('data-tags');
-
     /* [DONE] split tags into array */
-    const articleTagsArray = articleTags.split(' ');
+    const articleTagsArray = articleTags.split('  ');
 
     /* [DONE] START LOOP: for each tag */
     for (let tag of articleTagsArray) {
@@ -124,7 +122,8 @@ function tagClickHandler(event) {
   event.preventDefault();
 
   /* [DONE] make new constant named "clickedElement" and give it the value of "this" */
-  const clickedElement = 'this';
+  const clickedElement = this;
+  console.log('this',this);
 
   /* [DONE] make a new constant "href" and read the attribute "href" of the clicked element */
   const href = clickedElement.getAttribute('href');
@@ -146,6 +145,7 @@ function tagClickHandler(event) {
   /* [DONE] find all tag links with "href" attribute equal to the "href" constant */
   const tagLinks = document.querySelectorAll ('a[href="'+ href + '"]');
   console.log ('tagLinks', tagLinks);
+
   /* [DONE] START LOOP: for each found tag link */
   for (let tagLink of tagLinks) {
 
