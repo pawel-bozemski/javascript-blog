@@ -158,7 +158,7 @@ const tagClickHandler = function (event) {
   /* [DONE] find all tag links with class active */
 
   const tagActive = document.querySelectorAll('a.active[href^="#tag-"]');
-  console.log ('activeTag', tagActive);
+
   /* [DONE] START LOOP: for each active tag link */
 
   for (let activeTag of tagActive) {
@@ -166,7 +166,6 @@ const tagClickHandler = function (event) {
     /* [DONE] remove class active */
 
     activeTag.classList.remove('active');
-    console.log('Remove active tag', activeTag);
 
     /* [DONE] END LOOP: for each active tag link */
 
@@ -183,7 +182,6 @@ const tagClickHandler = function (event) {
     /*[DONE]  add class active */
 
     tagLink.classList.add('active');
-    console.log ('Add active tag', tagLink);
 
     /* [DONE] END LOOP: for each found tag link */
 
@@ -318,6 +316,7 @@ const addClickListenersToAuthors = function () {
 
   const allLinksToAuthors = document.querySelectorAll ('a[href^="#author"]');
 
+
   /* START LOOP: for each link */
 
   for (let allLinkToAuthors of allLinksToAuthors) {
@@ -332,3 +331,28 @@ const addClickListenersToAuthors = function () {
 };
 
 addClickListenersToAuthors();
+
+const removeActive = function (event) {
+
+  event.preventDefault();
+
+  const clickedElement = this;
+  clickedElement.getAttribute('href');
+
+  const activeRemove = document.getElementsByClassName('active');
+  console.log('active', activeRemove);
+  for (let removeActive of activeRemove){
+    removeActive.classList.remove('active');
+  }
+};
+
+const removeActiveListener = function() {
+
+  const listenerRemove = document.querySelectorAll ('a[href^="#All-posts"');
+  console.log('listnerer',listenerRemove);
+  for (let remove of listenerRemove){
+    remove.addEventListener('click', removeActive);
+  }
+};
+
+removeActiveListener();
