@@ -332,27 +332,10 @@ const addClickListenersToAuthors = function () {
 
 addClickListenersToAuthors();
 
-const removeActive = function (event) {
+const allPostRefreshArticleList = document.getElementById('all-posts');
+console.log('allPostRefreshArticleList',allPostRefreshArticleList);
+allPostRefreshArticleList.addEventListener('click', function() {
+  generateTitleLinks();
+});
 
-  event.preventDefault();
 
-  const clickedElement = this;
-  clickedElement.getAttribute('href');
-
-  const activeRemove = document.getElementsByClassName('active');
-  console.log('active', activeRemove);
-  for (let removeActive of activeRemove){
-    removeActive.classList.remove('active');
-  }
-};
-
-const removeActiveListener = function() {
-
-  const listenerRemove = document.querySelectorAll ('a[href^="#All-posts"');
-  console.log('listnerer',listenerRemove);
-  for (let remove of listenerRemove){
-    remove.addEventListener('click', removeActive);
-  }
-};
-
-removeActiveListener();
