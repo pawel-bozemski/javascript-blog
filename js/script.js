@@ -308,8 +308,6 @@ const calculateAuthorClass = function (count, params) {
   console.log(classNumber)
   return classNumber;
 
-
-
 };
 
 
