@@ -121,3 +121,34 @@ body {
     padding: 5px;
   }
 }
+
+/* Tags */
+
+.tags li {
+  display: inline-block;
+  line-height: normal;
+}
+
+.tag-size-1 {
+  font-size: 16px;
+  color: black;
+}
+.tag-size-2 {
+  font-size: 20px;
+  color: red;
+}
+.tag-size-3 {
+  font-size: 24px;
+  color: pink;
+}
+.tag-size-4 {
+  font-size: 28px;
+  color: purple;
+}
+.tag-size-5 {
+  font-size: 32px;
+  color: purple;
+}
+
+
+
