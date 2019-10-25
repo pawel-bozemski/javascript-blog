@@ -1,4 +1,15 @@
+/* eslint-disable no-prototype-builtins */
+/* eslint-disable no-undef */
 'use strict';
+
+const templates = {
+
+  articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
+  tagLink: Handlebars.compile(document.querySelector('#template-tag-link').innerHTML),
+  authorLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
+
+};
+console.log('article',article);
 
 const titleClickHandler = function(event) {
 
@@ -42,7 +53,6 @@ const optTitleSelector = '.post-title';
 const optTitleListSelector = '.titles';
 const optArticleTagsSelector = '.post-tags .list';
 const optArticleAuthorSelector = '.post-author';
-const optTagsListSelector = '.tags.list';
 const optCloudClassCount  = 5;
 
 const generateTitleLinks = function(customSelector = '') {
@@ -70,7 +80,8 @@ const generateTitleLinks = function(customSelector = '') {
 
     /* [DONE] create HTML of the link */
 
-    const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
+    const linkHTMLData = {id: articleId, title: articleTitle};
+    const linkHTML = templates.articleLink(linkHTMLData);
 
     /* [DONE] insert link into titleList */
 
@@ -115,11 +126,13 @@ const calculateTagClass = function (count, params) {
 const generateTags = function (){
 
   /* [NEW] create a new variable allTags with an empty object */
+
   let allTags = {};
 
   /* [DONE] find all articles */
 
   const articles = document.querySelectorAll(optArticleSelector);
+
   /* [DONE] START LOOP: for every article: */
 
   for (let article of articles) {
@@ -139,7 +152,7 @@ const generateTags = function (){
     /* [DONE] split tags into array */
 
     const articleTagsArray = articleTags.split(' ');
-
+    console.log(articleTagsArray);
     /* [DONE] START LOOP: for each tag */
 
 
@@ -147,7 +160,8 @@ const generateTags = function (){
 
       /* [DONE] generate HTML of the link */
 
-      const linkHTML = '<li><a href="#tag-' + tag + '">' + tag + '</a></li>';
+      const linkHTMLData = {id: tag, title: tag};
+      const linkHTML = templates.tagLink(linkHTMLData);
 
       /* [DONE] add generated code to html variable */
 
@@ -180,13 +194,11 @@ const generateTags = function (){
   /* [NEW] find list of tags in right column */
 
   const tagList = document.querySelector('.tags');
-  console.log ('tagList',tagList);
 
   /* [NEW] create variable for all links HTML code*/
 
   const tagsParams = calculateTagsParams(allTags);
 
-  console.log ('tagsParams',tagsParams);
 
   let allTagsHTML = '';
 
@@ -261,6 +273,7 @@ const tagClickHandler = function (event) {
   /* [DONE] execute function "generateTitleLinks" with article selector as argument */
 
   generateTitleLinks('[data-tags~="' + tag + '"]');
+  console.log(generateTitleLinks);
 
 };
 
@@ -305,7 +318,6 @@ const calculateAuthorClass = function (count, params) {
   const normalizedMax = params.max - params.min;
   const percentage = normalizedCount / normalizedMax;
   const classNumber = Math.floor( percentage * (optCloudClassCount - 1) + 1 );
-  console.log(classNumber)
   return classNumber;
 
 };
@@ -338,7 +350,8 @@ const generateAuthors = function (){
 
     /* [DONE] generate HTML of the link */
 
-    const linkHTML = '<a href="#author-' + articleAuthors + '">' + articleAuthors + '</a></<a>';
+    const linkHTMLData = {id: articleAuthors, title: articleAuthors};
+    const linkHTML = templates.authorLink(linkHTMLData);
 
     /* [DONE] add generated code to html variable */
 
@@ -367,14 +380,11 @@ const generateAuthors = function (){
   /* [NEW] find list of tags in right column */
 
   const authorList = document.querySelector('.authors');
-  console.log (authorList)
   /* [NEW] create variable for all links HTML code*/
 
   const authorParams = calculateAuthorsParams(allAuthors);
-  console.log('authorParams:', authorParams);
 
   let allAuthorsHTML = '';
-
 
   /* [NEW] generate code of link and add it to allTagsHTML*/
   for (let allAuthor in allAuthors ) {
